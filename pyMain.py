@@ -8,7 +8,7 @@ import time
 
 
 class MainClaw(object):
-
+    #
     def __init__(self):
         self.urlManger = r18URLRequest.r18URLRequestManager()
         self.htmlParser = r18htmlPyParse.r18htmlPyParseManger()
