@@ -49,7 +49,13 @@ class MainClaw(object):
                     self.dbManger.startRecord(videoInfoListNew)
 
         # 生成MarkDown or Html
-        date = str((time.localtime())[0] + '-' + (time.localtime())[1]  +  '-'  + (time.localtime())[2]  )
+        #凌晨一次 夜晚一次 , 凌晨发前一天
+        date = ''
+        if int(time.localtime()[3]) < 6:
+            date = str(time.localtime())[0] + '-' + str(time.localtime())[1]  +  '-'  + str(int((time.localtime())[2]) - 1 )
+        else:
+            date = str((time.localtime())[0]) + '-' + str((time.localtime())[1])  +  '-'  + str((time.localtime())[2])
+
         flag = self.outputer.startTransformDate(date)
         if flag == False:
             return
@@ -60,7 +66,7 @@ class MainClaw(object):
         self.outputer.zipFileResource()
 
         #Send Email
-        self.outputer.sendEmail()
+        # self.outputer.sendEmail()
 
 
         # clean
